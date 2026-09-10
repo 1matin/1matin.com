@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Matin's Blog</title>
+        <link rel="stylesheet" href="/styles.css" />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="Matin's Blog"
+            href="/feed.xml"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
+        />
+        <meta name="darkreader-lock" />
+        <meta name="color-scheme" content="light dark" />
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Matin's Blog</h1>
+            <ul>
+                {% for post in posts %}
+                <li>
+                    <a href="{{ post.permalink }}"
+                        >{{ post.frontmatter.title }}</a
+                    >
+                    {% if post.frontmatter.description %}
+                    <p class="description">
+                        {{ post.frontmatter.description }}
+                    </p>
+                    {% endif %} {% if post.frontmatter.date %}<span class="date"
+                        >{{ post.frontmatter.date }}</span
+                    >{% endif %} {% if post.frontmatter.lastmod and
+                    post.frontmatter.lastmod != post.frontmatter.date %}
+                    <span class="lastmod"
+                        >(Last modified: {{ post.frontmatter.lastmod }})</span
+                    >
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </body>
+</html>

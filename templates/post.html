@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{{ frontmatter.title }} - Matin's Blog</title>
+        <link rel="stylesheet" href="/styles.css" />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="Matin's Blog"
+            href="/feed.xml"
+        />
+        <script src="/profanity.js"></script>
+        <script src="/sidenote.js"></script>
+        <script src="/settings.js"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
+        />
+        <meta name="darkreader-lock" />
+        <meta name="color-scheme" content="light dark" />
+    </head>
+
+    <body class="min-h-screen flex flex-col items-center content">
+        <div class="article-grid">
+            <div class="left-sidebar">
+            <aside class="reading-sidebar" aria-label="Reading settings">
+                <section>
+                    <button
+                        id="profanityToggle"
+                        onclick="toggleProfanity()"
+                        class="sidebar-button"
+                    >
+                        Enable Profanity
+                    </button>
+                </section>
+                <section class="mobile-settings-row">
+                    <div class="setting-group text-size-control">
+                        <h2>Text size</h2>
+                        <div class="sidebar-controls">
+                            <button
+                                type="button"
+                                data-text-step="-1"
+                                aria-label="Decrease text size"
+                            >
+                                -
+                            </button>
+                            <span id="text-size-value">100%</span>
+                            <button
+                                type="button"
+                                data-text-step="1"
+                                aria-label="Increase text size"
+                            >
+                                +
+                            </button>
+                        </div>
+                    </div>
+                    <div class="setting-group article-width-control">
+                        <h2>Article width</h2>
+                        <div class="sidebar-controls">
+                            <button
+                                type="button"
+                                data-width-step="-1"
+                                aria-label="Decrease article width"
+                            >
+                                -
+                            </button>
+                            <span id="article-width-value">42rem</span>
+                            <button
+                                type="button"
+                                data-width-step="1"
+                                aria-label="Increase article width"
+                            >
+                                +
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h2>Theme</h2>
+                    <div class="theme-options">
+                        <button
+                            type="button"
+                            data-theme="black"
+                            aria-label="Black theme"
+                        >
+                            <span class="theme-swatch black"></span
+                            ><span class="theme-label">Black</span>
+                        </button>
+                        <button
+                            type="button"
+                            data-theme="dark"
+                            aria-label="Dark theme"
+                        >
+                            <span class="theme-swatch dark"></span
+                            ><span class="theme-label">Dark</span>
+                        </button>
+                        <button
+                            type="button"
+                            data-theme="light"
+                            aria-label="Light theme"
+                        >
+                            <span class="theme-swatch light"></span
+                            ><span class="theme-label">Light</span>
+                        </button>
+                        <button
+                            type="button"
+                            data-theme="sepia"
+                            aria-label="Sepia theme"
+                        >
+                            <span class="theme-swatch sepia"></span
+                            ><span class="theme-label">Sepia</span>
+                        </button>
+                    </div>
+                </section>
+            </aside>
+            <aside class="newsletter-box" aria-label="Newsletter">
+                <h2>Newsletter</h2>
+                <p class="newsletter-text">Hey there! punch your email in for fun!</p>
+                <form id="newsletter-form">
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        aria-label="Email address"
+                        required
+                    />
+                    <button type="submit">Punch it in</button>
+                </form>
+                <p class="newsletter-message" id="newsletter-message" hidden></p>
+                <script>
+                    document.getElementById("newsletter-form").addEventListener("submit", function (e) {
+                        e.preventDefault();
+                        var msg = document.getElementById("newsletter-message");
+                        msg.hidden = false;
+                        msg.textContent = "lol. There's no newsletter, so nothing happens. But your trust is valuable to me. Thanks!";
+                        e.target.reset();
+                    });
+                </script>
+            </aside>
+            </div>
+            <div class="article-main">
+                <h1 class="text-4xl font-black">{{ frontmatter.title }}</h1>
+                {% if frontmatter.description %}
+                <p>{{ frontmatter.description }}</p>
+                {% endif %}
+                <div>
+                    {% if frontmatter.date %}<span>Written on {{ frontmatter.date }}</span
+                    >{% endif %} {% if frontmatter.lastmod and
+                    frontmatter.lastmod != frontmatter.date %}
+                    <span>(Last modified: {{ frontmatter.lastmod }})</span>
+                    {% endif %}
+                </div>
+                <div class="text-left">{{ content }}</div>
+                <p><a href="../">go back to home (please don't)</a></p>
+                <p><a href="../feed.xml">free RSS feeds for everyone!</a></p>
+                <p><a href="https://github.com/1matin">my github</a></p>
+                {% if prev_post %}
+                <p>prev: <a href="../{{ prev_post.permalink }}">{{ prev_post.title }}</a></p>
+                {% endif %}
+                {% if next_post %}
+                <p>next: <a href="../{{ next_post.permalink }}">{{ next_post.title }}</a></p>
+                {% endif %}
+            </div>
+            <aside
+                class="article-sidebar"
+                id="sidenote-sidebar"
+                aria-label="Side notes"
+            ></aside>
+        </div>
+        <div
+            id="sidenote-modal"
+            class="sidenote-modal"
+            role="dialog"
+            aria-modal="true"
+        >
+            <div
+                id="sidenote-modal-backdrop"
+                class="sidenote-modal-backdrop"
+            ></div>
+            <div class="sidenote-modal-panel">
+                <button id="sidenote-modal-close" class="sidenote-modal-close">
+                    &times;
+                </button>
+                <div id="sidenote-modal-body" class="sidenote-modal-body"></div>
+            </div>
+        </div>
+    </body>
+</html>
