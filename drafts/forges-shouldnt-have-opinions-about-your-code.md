@@ -5,6 +5,27 @@ lastmod: 2026-09-08
 description: "vibe-governance is more dangerous than vibe-coding for FOSS"
 ---
 
+
+DRAFT:
+
+```
+Good instinct, and it fits the essay's existing thesis perfectly — you're not arguing DeVault's targets are all sympathetic, you're arguing his *methodology* is the same one you already spent 2000 words dismantling. Same move, different artifact type.
+
+Here's the throughline I'd hang it on, mapped to structure you can just fill in:
+
+**The core parallel to state explicitly:**
+The "weird little guys" list runs the exact same play as the forge bans. Both start from a real, defensible core (yes, Stallman's writings are indefensible; yes, unreviewed AI slop breaks build queues) and then use that legitimacy as cover to sweep in cases that don't remotely meet the same bar. The list isn't sorted or weighted — DHH's ethno-nationalist blog posts and ThePrimeagen's "spoke at a conference, donated to a project" sit in the same document, presented with the same visual authority, so the reader's judgment about the strong cases bleeds onto the weak ones.
+
+**Specific things worth naming:**
+- **The criteria are self-admittedly vibes-based.** DeVault's own FAQ says inclusion is "as judged by yours truly." That's not a gotcha you have to dig for — he states it. Quote it directly, it's your best evidence and it's right there.
+- **"Involved in FOSS" + "public politics" is doing almost no filtering work.** It's broad enough to catch someone for proximity (funded by, spoke alongside, boosted a tweet from) at the same severity tier as someone for authorship (wrote the racist blog post themselves). Your Bob/Codeberg move — find the line that's supposed to hold weight and show it doesn't — works here too: what's the actual test for "weird enough," and does Prime clear it, or is he there because the company he keeps offended DeVault?
+- **No appeals process, no removal criteria, "request changes via email, patches welcome."** Compare that to your Codeberg point about the vote subject line already containing the verdict — DeVault is again the sole arbiter of a judgment that gets published with the authority of a settled fact.
+- **The "don't harass, don't engage" disclaimer functions as a liability shield, not a safety measure.** It lets him publish a target list while formally washing his hands of what happens next — structurally the same as "gatekeeping vs censorship, we just have opinions" framing you already called out.
+
+**One thing to watch:** don't let this section imply DHH/Stallman/Appelbaum don't belong — your essay is stronger if you explicitly concede those are real, because that's what makes "and yet Prime is in the same bucket" land as a methodology critique instead of you minimizing actual harm. If it reads like you're defending the list's weakest members on the merits, you lose the DHH-tier reader who'd otherwise agree with you.
+```
+
+
 ## The event
 
 
